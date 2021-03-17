@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import springboot2.domain.Anime;
+import springboot2.requests.AnimePostRequestBody;
+import springboot2.requests.AnimePutRequestBody;
 import springboot2.service.AnimeService;
 import springboot2.util.DateUtil;
 
@@ -37,11 +40,16 @@ public class AnimeController {
 	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Anime> findById(@PathVariable long id){
-		return ResponseEntity.ok(animeService.findById(id));
+		return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
+	}
+	
+	@GetMapping(path = "/find")
+	public ResponseEntity<List<Anime>> findByName(@RequestParam String name){
+		return ResponseEntity.ok(animeService.findByName(name));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Anime> save(@RequestBody Anime anime){
+	public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody anime){
 		return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
 	}
 	
@@ -52,7 +60,7 @@ public class AnimeController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Void> replace(@RequestBody Anime anime){
+	public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody anime){
 		animeService.replace(anime);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
