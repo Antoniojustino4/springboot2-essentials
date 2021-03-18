@@ -6,10 +6,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import lombok.RequiredArgsConstructor;
 import springboot2.domain.Anime;
+import springboot2.exception.BadRequestException;
 import springboot2.mapper.AnimeMapper;
 import springboot2.repository.AnimeRepository;
 import springboot2.requests.AnimePostRequestBody;
@@ -31,9 +33,10 @@ public class AnimeService {
 
 	public Anime findByIdOrThrowBadRequestException(long id) {
 		return animeRepository.findById(id)
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found"));
+				.orElseThrow(() -> new BadRequestException("Anime not found"));
 	}
 
+	@Transactional
 	public Anime save(AnimePostRequestBody animePostRequestBody) {
 		return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
 	}
