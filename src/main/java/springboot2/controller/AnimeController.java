@@ -1,6 +1,5 @@
 package springboot2.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,25 +19,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import springboot2.domain.Anime;
 import springboot2.requests.AnimePostRequestBody;
 import springboot2.requests.AnimePutRequestBody;
 import springboot2.service.AnimeService;
-import springboot2.util.DateUtil;
 
 @RestController
 @RequestMapping("animes")
-@Log4j2
 @RequiredArgsConstructor
 public class AnimeController {
 	
-	private final DateUtil dateUtil;
 	private final AnimeService animeService; 
 	
 	@GetMapping
 	public ResponseEntity<Page<Anime>> list(Pageable pageable){
-		log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
 		return ResponseEntity.ok(animeService.listAll(pageable));
 	}
 	
