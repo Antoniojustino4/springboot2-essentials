@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: springboot2.controller.AnimeControllerTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 39.803 s - in springboot2.controller.AnimeControllerTest

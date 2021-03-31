@@ -1,0 +1,17 @@
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\domain\Anime.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\service\AnimeService.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\mapper\AnimeMapper.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\exception\ValidationExceptionDetails.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\client\SpringClient.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\wrapper\PageableResponse.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\Springboot2EssentialsApplication.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\controller\AnimeController.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\requests\AnimePostRequestBody.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\configurer\DevDojoWebMvcConfigurer.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\exception\ExceptionDetails.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\handler\RestExceptionHandler.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\exception\BadRequestException.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\exception\BadRequestExceptionDetails.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\repository\AnimeRepository.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\util\DateUtil.java
+C:\Users\anton\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\springboot2-essentials\src\main\java\springboot2\requests\AnimePutRequestBody.java
