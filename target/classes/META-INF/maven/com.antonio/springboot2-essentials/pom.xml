@@ -81,18 +81,26 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>${springdoc-openapi-ui.version}</version>
 		</dependency>
-		<!-- Essa dependência permite o suporte de tipos spring-data-rest também: anotações @RepositoryRestResource e QuerydslPredicate.-->
+		<!-- Essa dependência permite o suporte de tipos spring-data-rest também: 
+			anotações @RepositoryRestResource e QuerydslPredicate. -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-data-rest</artifactId>
 			<version>${springdoc-openapi-ui.version}</version>
 		</dependency>
-		<!-- Para um projeto que usa spring-security, você deve adicionar a seguinte dependência, junto com a dependência springdoc-openapi-ui: 
-			Essa dependência ajuda a ignorar @AuthenticationPrincipal no caso de ser usado em controladores REST. -->
+		<!-- Para um projeto que usa spring-security, você deve adicionar a seguinte 
+			dependência, junto com a dependência springdoc-openapi-ui: Essa dependência 
+			ajuda a ignorar @AuthenticationPrincipal no caso de ser usado em controladores 
+			REST. -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-security</artifactId>
 			<version>${springdoc-openapi-ui.version}</version>
+		</dependency>
+		<!-- Recursos adicionais para ajudá-lo a monitorar e gerenciar seu aplicativo ao colocá-lo em produção -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 	</dependencies>
 	<profiles>
