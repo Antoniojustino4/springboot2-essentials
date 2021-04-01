@@ -20,6 +20,7 @@
 		<java.version>11</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<springdoc-openapi-ui.version>1.5.6</springdoc-openapi-ui.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -73,6 +74,25 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- Spring Doc, para acessar: localhost:8080/swagger-ui -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc-openapi-ui.version}</version>
+		</dependency>
+		<!-- Essa dependência permite o suporte de tipos spring-data-rest também: anotações @RepositoryRestResource e QuerydslPredicate.-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-data-rest</artifactId>
+			<version>${springdoc-openapi-ui.version}</version>
+		</dependency>
+		<!-- Para um projeto que usa spring-security, você deve adicionar a seguinte dependência, junto com a dependência springdoc-openapi-ui: 
+			Essa dependência ajuda a ignorar @AuthenticationPrincipal no caso de ser usado em controladores REST. -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-security</artifactId>
+			<version>${springdoc-openapi-ui.version}</version>
 		</dependency>
 	</dependencies>
 	<profiles>

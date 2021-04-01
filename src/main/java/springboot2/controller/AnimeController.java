@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import springboot2.domain.Anime;
@@ -32,48 +36,81 @@ import springboot2.service.AnimeService;
 @RequestMapping("animes")
 @RequiredArgsConstructor
 public class AnimeController {
-	
-	private final AnimeService animeService; 
-	
+
+	private final AnimeService animeService;
+
 	@GetMapping
-	public ResponseEntity<Page<Anime>> list(Pageable pageable){
+	@Operation(summary = "List all animes paginated", description = "The default size is 20, use the parameter size to change the default value", 
+		tags = {"anime"})
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Successful Operation") })
+	public ResponseEntity<Page<Anime>> list(@ParameterObject Pageable pageable) {
 		return ResponseEntity.ok(animeService.listAll(pageable));
 	}
-	
-	@GetMapping(path="/all")
-	public ResponseEntity<List<Anime>> listAll(){
+
+	@GetMapping(path = "/all")
+	@Operation(summary = "List all animes", tags = { "anime" })
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Successful Operation")})
+	public ResponseEntity<List<Anime>> listAll() {
 		return ResponseEntity.ok(animeService.listAllNonPageable());
 	}
-	
+
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Anime> findById(@PathVariable long id){
+	@Operation(summary = "Find anime by id", tags = { "anime" })
+	@ApiResponses(value= {
+			@ApiResponse (responseCode="200", description="Successful Operation"),
+			@ApiResponse (responseCode="400", description="Anime(id) does not exist in DataBase")
+		})
+	public ResponseEntity<Anime> findById(@PathVariable long id) {
 		return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
 	}
-	
+
 	@GetMapping(path = "by-id/{id}")
-	public ResponseEntity<Anime> findByIdAuthenticatonPrincipal(@PathVariable long id, @AuthenticationPrincipal UserDetails userDetails){
+	@Operation(summary = "Find anime by id used authentication principal", tags = { "anime" })
+	@ApiResponses(value= {
+			@ApiResponse (responseCode="200", description="Successful Operation"),
+			@ApiResponse (responseCode="400", description="Anime(id) does not exist in DataBase")
+		})
+	public ResponseEntity<Anime> findByIdAuthenticationPrincipal(@PathVariable long id,
+			@AuthenticationPrincipal UserDetails userDetails) {
 		log.info(userDetails);
 		return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
 	}
-	
+
 	@GetMapping(path = "/find")
-	public ResponseEntity<List<Anime>> findByName(@RequestParam String name){
+	@Operation(summary = "Find anime by name", tags = { "anime" })
+	@ApiResponses(value= {
+			@ApiResponse (responseCode="200", description="Successful Operation"),
+			@ApiResponse (responseCode="400", description="Name does not exist in request")
+		})
+	public ResponseEntity<List<Anime>> findByName(@RequestParam String name) {
 		return ResponseEntity.ok(animeService.findByName(name));
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody anime){
+	@Operation(summary = "Save anime", tags = { "anime" })
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "201", description = "Successful Operation"),
+			@ApiResponse (responseCode="400", description="Invalid Fields")})
+	public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody anime) {
 		return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
 	}
-	
+
 	@DeleteMapping(path = "/admin/{id}")
-	public ResponseEntity<Void> delete(@PathVariable long id){
+	@Operation(summary = "Delete anime by id", tags = { "anime" })
+	@ApiResponses(value = { @ApiResponse(responseCode = "204", description = "Successful Operation"),
+			@ApiResponse(responseCode = "400", description = "When Anime does not exist in DataBase") })
+	public ResponseEntity<Void> delete(@PathVariable long id) {
 		animeService.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	@PutMapping
-	public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody anime){
+	@Operation(summary = "Replace anime", tags = { "anime" })
+	@ApiResponses(value= {
+			@ApiResponse (responseCode="204", description="Successful Operation"),
+			@ApiResponse (responseCode="400", description="When Anime does not exist in DataBase")
+		})
+	public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody anime) {
 		animeService.replace(anime);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
