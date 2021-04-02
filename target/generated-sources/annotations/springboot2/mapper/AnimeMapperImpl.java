@@ -9,7 +9,7 @@ import springboot2.requests.AnimePutRequestBody;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-31T21:09:37-0300",
+    date = "2021-04-01T17:32:01-0300",
     comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.3.1100.v20200828-0941, environment: Java 15 (Oracle Corporation)"
 )
 @Component
